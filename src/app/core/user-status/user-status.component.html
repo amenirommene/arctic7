@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let u of list">
+   <p [ngClass]="{'active':u.status=='active','inactive':u.status=='inactive', 'pending':u.status=='pending'}"> nom : {{ u.nom }} </p>
+  </li>
+</ul>

@@ -1,0 +1,54 @@
+<router-outlet></router-outlet>
+<div class="list-suggestion-container">
+  <h1 class="page-title">Liste des suggestions</h1>
+  <button routerLink="add">Ajouter une suggestion</button>
+
+  <div class="search-container">
+    <input
+      [(ngModel)] = "searchTearm"
+      type="text"
+      class="search-input"
+      [placeholder]="placeHolderText"
+  /> {{searchTearm}}
+  </div>
+
+  <div class="suggestions-list">
+    <div  *ngFor="let s of suggestions">
+      <div class="suggestion-card" *ngIf="s.title.toLocaleLowerCase().includes(searchTearm.toLocaleLowerCase())
+      || s.category.toLocaleLowerCase().includes(searchTearm.toLocaleLowerCase())">
+      <div class="card-header">
+        <h2 class="suggestion-title">{{s.title}}</h2>
+      </div>
+
+      <div class="card-meta">
+        <span class="category">{{s.category}}</span>
+        <span class="date">{{s.date | date:"dd MMM yyyy"}}</span>
+      </div>
+
+      <p class="suggestion-description">{{s.description}}</p>
+
+      <div class="card-footer">
+        <span class="status-badge"
+        [class]="getClassCss(s.status)"> {{s.status}}
+        </span>
+
+        <div  class="action-buttons" *ngIf="s.status != 'refusee'" >
+          <button class="btn-like" (click)="like(s)">
+            <span class="icon"></span>
+           {{s.nbLikes}}
+          </button>
+          <button class="btn-favorite" (click)="addToFavoris(s)">
+            <span class="icon"></span>
+            Ajouter aux favoris
+          </button>
+          <button class="btn-favorite" [routerLink]="['details',s.id]">
+            Détails
+          </button>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
