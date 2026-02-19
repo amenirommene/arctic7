@@ -1,16 +1,107 @@
-<form [formGroup]="myForm">
-  title : <input formControlName="title">
-<div *ngIf="myForm.get('title')?.touched &&
-myForm.get('title')?.invalid "> Title obligatoire </div>
+<form class="p-3" [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
 
-  description : <textarea formControlName="description"></textarea>
-  <div *ngIf="myForm.get('description')?.touched &&
-myForm.get('description')?.invalid ">
- <div *ngIf="myForm.get('description')?.errors?.['required']">description obligatoire</div>
- <div *ngIf="myForm.get('description')?.errors?.['minlength']">Minimum 3</div>
-</div>
+
+ <div class="mb-3">
+
+  <label>Titre</label>
+
+  <input formControlName="title" type="text" class="form-control">
+
+
+
+ <div class="text-danger" *ngIf="myForm.get('title')?.touched && myForm.get('title')?.invalid">
+
+   <small *ngIf="myForm.get('title')?.errors?.['required']">Titre obligatoire.</small>
+
+   <small *ngIf="myForm.get('title')?.errors?.['minlength']">Minimum 5 caractères.</small>
+
+   <small *ngIf="myForm.get('title')?.errors?.['pattern']">Doit commencer par une majuscule et contenir seulement des lettres.</small>
+
+  </div>
+
+ </div>
+
+
+
+ <div class="mb-3">
+
+  <label>Description</label>
+
+  <textarea formControlName="description" rows="4" class="form-control"></textarea>
+
+
+
+   <div class="text-danger" *ngIf="myForm.get('description')?.touched && myForm.get('description')?.invalid">
+
+   <small *ngIf="myForm.get('description')?.errors?.['required']">Description obligatoire.</small>
+
+   <small *ngIf="myForm.get('description')?.errors?.['minlength']">
+
+    Minimum 30 caractères.
+
+   </small>
+
+  </div>
+
+ </div>
+
+
+
+ <div class="mb-3">
+
+  <label>Catégorie</label>
+
+  <select formControlName="category" class="form-select" >
+
+   <option value="">-- Choisir une catégorie --</option>
+
+   <option *ngFor="let c of categories" >{{ c }}</option>
+
+  </select>
+
+
+
+<div class="text-danger" *ngIf="myForm.get('category')?.invalid && myForm.get('category')?.touched">
+
+   <small>Catégorie obligatoire.</small>
+
+  </div>
+
+ </div>
+
+
+
+ <div class="mb-3">
+
+  <label>Date</label>
+
+  <input formControlName="date" type="text" class="form-control" readonly>
+
+ </div>
+
+
+
+ <div class="mb-3">
+
+  <label>Status</label>
+
+  <input formControlName="status" type="text" class="form-control" readonly>
+
+ </div>
+
+
+
+ <button [disabled]="myForm.invalid" class="btn btn-primary" type="submit">
+
+  {{ id ? "Update" : "Add" }}
+
+ </button>
+
+
+
 </form>
+
 
  valid: {{myForm.get('title')?.valid}} -  invalid: {{myForm.get('title')?.invalid}}
  <p> touched:{{myForm.get('title')?.touched}} - untouched: {{myForm.get('title')?.untouched}} </p>
