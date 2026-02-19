@@ -10,6 +10,7 @@ import { UserStatusComponent } from './core/user-status/user-status.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './core/home/home.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { NotFoundComponent } from './core/not-found/not-found.component';
     AppRoutingModule,
     FormsModule //directive ngModel
   ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

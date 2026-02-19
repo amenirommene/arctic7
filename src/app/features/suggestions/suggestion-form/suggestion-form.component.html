@@ -10,7 +10,7 @@
 
 
 
- <div class="text-danger" *ngIf="myForm.get('title')?.touched && myForm.get('title')?.invalid">
+ <div class="text-danger" *ngIf="title?.touched && myForm.get('title')?.invalid">
 
    <small *ngIf="myForm.get('title')?.errors?.['required']">Titre obligatoire.</small>
 
