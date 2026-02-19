@@ -1,5 +1,17 @@
 <form [formGroup]="myForm">
   title : <input formControlName="title">
-  
+<div *ngIf="myForm.get('title')?.touched &&
+myForm.get('title')?.invalid "> Title obligatoire </div>
+
+
   description : <textarea formControlName="description"></textarea>
+  <div *ngIf="myForm.get('description')?.touched &&
+myForm.get('description')?.invalid ">
+ <div *ngIf="myForm.get('description')?.errors?.['required']">description obligatoire</div>
+ <div *ngIf="myForm.get('description')?.errors?.['minlength']">Minimum 3</div>
+</div>
 </form>
+
+ valid: {{myForm.get('title')?.valid}} -  invalid: {{myForm.get('title')?.invalid}}
+ <p> touched:{{myForm.get('title')?.touched}} - untouched: {{myForm.get('title')?.untouched}} </p>
+ <p> dirty:{{myForm.get('title')?.dirty}} - pristine: {{myForm.get('title')?.pristine}} </p>

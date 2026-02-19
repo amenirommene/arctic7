@@ -9,9 +9,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class SuggestionFormComponent implements OnInit {
 myForm! : FormGroup;
 
-  ngOnInit(){
+ngOnInit(){
 this.myForm= new FormGroup({
-  title : new FormControl("test",Validators.required),
+  title : new FormControl("",Validators.required),
   description: new FormControl("",[Validators.required,Validators.minLength(3)])
 })
   }
