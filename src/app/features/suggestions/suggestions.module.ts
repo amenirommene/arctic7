@@ -7,6 +7,7 @@ import { ListSuggestionsComponent } from './list-suggestions/list-suggestions.co
 import { SuggestionDetailsComponent } from './suggestion-details/suggestion-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SuggestionFormComponent } from './suggestion-form/suggestion-form.component';
+import { SuggestionService } from '../../services/suggestion.service';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { SuggestionFormComponent } from './suggestion-form/suggestion-form.compo
     SuggestionsRoutingModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],
+  
 })
 export class SuggestionsModule { }

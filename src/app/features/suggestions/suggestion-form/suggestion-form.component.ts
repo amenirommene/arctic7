@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Suggestion } from '../../../models/suggestion';
 import { Router } from '@angular/router';
+import { SuggestionService } from '../../../services/suggestion.service';
 
 @Component({
   selector: 'app-suggestion-form',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './suggestion-form.component.css'
 })
 export class SuggestionFormComponent implements OnInit {
-  constructor(private fb:FormBuilder, private _myRouter:Router){}
+  constructor(private fb:FormBuilder, private _myRouter:Router, private sug:SuggestionService){}
 myForm! : FormGroup;
 myForm2! : FormGroup;
 id : number = 0;
@@ -25,10 +26,17 @@ get title(){
   return this.myForm.get('title');
 }
     onSubmit(){
-      let s = new Suggestion();
-      s.category=this.title?.value;
-      console.log(this.myForm.value);
-      this._myRouter.navigateByUrl("/suggestions");
+  let s = new Suggestion();
+  s.category=this.title?.value;
+  console.log(this.myForm.value);
+  this.sug.addSuggestion(this.myForm.value).subscribe(
+    {
+      next:res=>console.log(res),
+      error:err=>console.log(err),
+      complete:()=>this._myRouter.navigateByUrl("/suggestions")
+    }
+  );
+  //this._myRouter.navigateByUrl("/suggestions");
 
   }
 ngOnInit(){
