@@ -8,4 +8,6 @@ import { FooterComponent } from "./core/footer/footer.component";
 })
 export class AppComponent {
   title = 'AngularArctic7Modulaire';
+  
+
 }

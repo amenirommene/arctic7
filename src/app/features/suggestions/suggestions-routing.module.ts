@@ -8,6 +8,7 @@ import { SuggestionFormComponent } from './suggestion-form/suggestion-form.compo
 const routes: Routes = [
   { path: '', component: SuggestionsComponent, children:[
   {path:'add', component:SuggestionFormComponent},
+  {path:'update/:id', component:SuggestionFormComponent},
   { path: '', component: ListSuggestionsComponent, children:[
   { path: 'details/:id', component: SuggestionDetailsComponent}
     ]},

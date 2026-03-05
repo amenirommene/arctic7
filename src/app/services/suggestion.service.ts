@@ -14,6 +14,9 @@ export class SuggestionService {
   getSuggestionsFromBackend():Observable<Suggestion[]>{
     return this._http.get<Suggestion[]>(this.url);
   }
+  getSuggestionsFromBackendById(id:number):Observable<any>{
+    return this._http.get<any>(this.url+"/"+id);
+  }
   //est ce que data retournée = Suggestion est correcte ?
   addSuggestion(s:Suggestion):Observable<Suggestion>{
     return this._http.post<Suggestion>(this.url,s);
@@ -25,7 +28,7 @@ export class SuggestionService {
      return this._http.delete<Suggestion>(this.url+"/"+id);
   }
 
-  getListSuggestions(){
+  getListSuggestions():Suggestion[]{
     return [
 {
 id: 1,
